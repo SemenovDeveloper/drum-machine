@@ -108,19 +108,22 @@ function App() {
   }
 
   return (
-    <div id="drum-machine ">
+    <div id="drum-machine">
       <h1>Drum Machine</h1>
-      {audioClips.map(clip => (
-        <Pad            
-          recordStatus={recordStatus}
-          key={clip.id} 
-          clip={clip} 
-          volume={volume} 
-          record={record} 
-          setRecord={setRecord}/>
-      ))}
-      <div id="display"></div>
-      <div>
+      <div id="functional-components">
+        <div id="pad-panel">
+          {audioClips.map(clip => (
+          <Pad            
+            recordStatus={recordStatus}
+            key={clip.id} 
+            clip={clip} 
+            volume={volume} 
+            record={record} 
+            setRecord={setRecord}/>
+          ))}
+        </div>
+        <div id="control-panel">
+        <div id="display"></div>
         <h3>Volume</h3>
         <input 
           min="0"
@@ -141,25 +144,29 @@ function App() {
           onChange={changeSpeed}
         ></input>
         <div>{speed}x</div>
-        <div>
+        <div id="control-buttons">
           <div 
+            className="btn"
             onClick={recordToggler} 
             style={recordStatus ? {backgroundColor: "red"}:{backgroundColor: "white"}}
           >
             <i className="fas fa-record-vinyl"></i></div>
-          <div 
+          <div      
+            className="btn"
             onClick={playRecord}
             style={playStatus ? {backgroundColor: "green"}:{backgroundColor: "white"}}
           ><i className="white fas fa-play"></i></div>
           <div 
+            className="btn"
             id="clear-btn"
             style={{backgroundColor: 'white'}}
             onClick={clearRecord}
             ><i className="far fa-trash-alt" ></i></div>
         </div>
         <div>{record}</div>
-        <div className="footer"><a id="footer" target="_blank" href="https://github.com/SemenovDeveloper"><i className="fab fa-github-square"></i>by SemenovDeveloper</a>
         </div>
+      </div>
+      <div className="footer"><a id="footer" target="_blank" href="https://github.com/SemenovDeveloper"><i className="fab fa-github-square"></i>by SemenovDeveloper</a>
       </div>
     </div>
   )

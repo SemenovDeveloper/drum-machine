@@ -1,19 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
-* {
+*, body, html {
   box-sizing: border-box;
   font-family: Orbiticon, sans-serif;
+  text-align: center;
 }
 
+body{
+  width: 100%;
+  background: url(src/drums.jpg) 50% 0 no-repeat fixed;
+}
 #root {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#drum-pad{
+#drum-machine {
+  background-color: black;
+  border: 2px solid white;
   display: flex;
-  width: 15px;
-  height: 20px;
+  flex-direction: column;
+}
+
+#functional-components{
+  display: flex;
+  flex-direction: row;
+}
+#pad-panel {
+  border: 2px solid red;
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+}
+
+.drum-pad{
+  margin: 5px;
+  width: 50px;
+  height: 80px;
+}
+
+#control-buttons{
+  display: flex;
 }
