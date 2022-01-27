@@ -61,17 +61,23 @@ const defaultStyle = {
 };
 
 const activeStyle = {
-  backgroundColor: 'orange',
-  boxShadow: '0 3px orange',
+  backgroundColor: 'yellow',
+  boxShadow: '0 3px yellow',
 };
 
 function App() { 
   const [volume, setVolume] = React.useState(0.5);
+  const [speed, setSpeed] = React.useState(1);
   const [record, setRecord] = React.useState("");
-  const [recordStatus, setRecordStatus] = React.useState(false);  
+  const [recordStatus, setRecordStatus] = React.useState(false);
+  const [playStatus, setPlayStatus] = React.useState(false);
 
   const changeVolume = (e) => {
     setVolume(e.target.value);
+  }
+
+  const changeSpeed = (e) => {
+    setSpeed(e.target.value);
   }
 
   const playRecord = () =>{
@@ -79,16 +85,22 @@ function App() {
     for(let i=0; i < sounds.length; i++){
       setTimeout( () => {
         const audioTag = document.getElementById(sounds[i]);
-        console.log(audioTag);
         audioTag.volume = volume;
         audioTag.currentTime = 0;
         audioTag.play();
-      }, i * 350);
-    }
+        setPlayStatus(true);
+      }, i * (1/speed) * 300);
+    }    
+    setTimeout( () => {
+      setPlayStatus(false);
+    }, sounds.length * (1/speed) * 300)
   }
 
   const clearRecord = () => {
+    const clearBtn = document.getElementById("clear-btn");
+    clearBtn.style.backgroundColor = "yellow";
     setRecord("");
+    setTimeout( () => {clearBtn.style.backgroundColor = "white"},300)
   }
 
   const recordToggler = () => {
@@ -96,38 +108,57 @@ function App() {
   }
 
   return (
-    <div className="bg-info text-white min-vh-100">
-      <div className="text-center">
-        <h1>Drum Machine</h1>
-        {audioClips.map(clip => (
-          <Pad            
-            recordStatus={recordStatus}
-            key={clip.id} 
-            clip={clip} 
-            volume={volume} 
-            record={record} 
-            setRecord={setRecord}/>
-        ))}
-        <br/>
-        <div id="display"></div>
-        <br/>
+    <div id="drum-machine ">
+      <h1>Drum Machine</h1>
+      {audioClips.map(clip => (
+        <Pad            
+          recordStatus={recordStatus}
+          key={clip.id} 
+          clip={clip} 
+          volume={volume} 
+          record={record} 
+          setRecord={setRecord}/>
+      ))}
+      <div id="display"></div>
+      <div>
+        <h3>Volume</h3>
+        <input 
+          min="0"
+          max="1"
+          step="0.01"
+          type="range" 
+          value={volume}
+          onChange={changeVolume}
+        ></input>
+        <div>{Math.round(volume*100) + "%"}</div>
+        <h3>Speed</h3>
+        <input 
+          min="0.1"
+          max="5"
+          step="0.1"
+          type="range" 
+          value={speed}
+          onChange={changeSpeed}
+        ></input>
+        <div>{speed}x</div>
         <div>
-          <h3>Volume</h3>
-          <input 
-            min="0"
-            max="1"
-            step="0.01"
-            type="range" 
-            value={volume}
-            onChange={changeVolume}
-          ></input>
-          <div>{Math.round(volume*100) + "%"}</div>
-          <div>
-            <div className="btn bg-white m-2" onClick={recordToggler}><i className="fas fa-record-vinyl"></i></div>
-            <div className="btn bg-white m-2" onClick={playRecord}><i className="white fas fa-play"></i></div>
-            <div className="btn bg-white m-2" onClick={clearRecord}><i className="far fa-trash-alt"></i></div>
-          </div>
-          <div>{record}</div>
+          <div 
+            onClick={recordToggler} 
+            style={recordStatus ? {backgroundColor: "red"}:{backgroundColor: "white"}}
+          >
+            <i className="fas fa-record-vinyl"></i></div>
+          <div 
+            onClick={playRecord}
+            style={playStatus ? {backgroundColor: "green"}:{backgroundColor: "white"}}
+          ><i className="white fas fa-play"></i></div>
+          <div 
+            id="clear-btn"
+            style={{backgroundColor: 'white'}}
+            onClick={clearRecord}
+            ><i className="far fa-trash-alt" ></i></div>
+        </div>
+        <div>{record}</div>
+        <div className="footer"><a id="footer" target="_blank" href="https://github.com/SemenovDeveloper"><i className="fab fa-github-square"></i>by SemenovDeveloper</a>
         </div>
       </div>
     </div>
@@ -170,7 +201,7 @@ function Pad(props) {
 
 
     return (
-      <div onClick={playSound} className="btn p-4 m-4" style={padStyle}
+      <div onClick={playSound} className="drum-pad btn" style={padStyle}
       >
         <audio      
           className="clip"

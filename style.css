@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: Orbiticon, sans-serif; }
+
+#root {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%); }
+
+#drum-pad {
+  display: flex;
+  width: 15px;
+  height: 20px; }
