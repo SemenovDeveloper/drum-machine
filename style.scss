@@ -10,6 +10,7 @@ body{
   width: 100%;
   background: url(src/drums.jpg) 50% 0 no-repeat fixed;
 }
+
 #root {
   display: flex;
   justify-content: center;
@@ -17,29 +18,105 @@ body{
   height: 100vh;
 }
 
+h1 {
+  padding-top: 20px;
+}
+
 #drum-machine {
+  width: 800px;
+  height: 540px;
   background-color: black;
   border: 2px solid white;
+  color: white;
+  border-radius: 3%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #functional-components{
+  width: 90%;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;  
 }
+
 #pad-panel {
-  border: 2px solid red;
+  width: 370px;
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: 110px 110px 110px;
+  grid-column-gap: 20px;
+  grid-row-gap: 15px;
 }
 
 .drum-pad{
-  margin: 5px;
-  width: 50px;
-  height: 80px;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 90px;
+  div {
+    font-size: 2rem;
+  }
+}
+
+#control-panel{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+  .control-bars{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 5%;
+    input {
+      margin: 5px 5px;
+    }
+  }
+}
+
+
+#display {
+  width: 100%;
+  height: 35px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5%;
+  font-size: 1.25rem;
 }
 
 #control-buttons{
+  width: 100%;
   display: flex;
+  justify-content: space-around;
+  button {
+    width: 40px;
+    height: 40px;
+    border-radius: 30%;
+  }
+}
+
+.footer {
+  height: 35px;
+  color: white;
+  text-align: center;
+  i {
+    color:white;
+    margin-right: 5px;
+  }
+  a:active, /* активная/посещенная ссылка */
+  a:hover,  /* при наведении */
+  a {
+    text-decoration: none;
+    color: white;
+    padding-right: 35px;
+    text-decoration: none;
+    font-size: 1rem;
+  }
 }

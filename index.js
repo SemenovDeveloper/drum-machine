@@ -57,12 +57,10 @@ const audioClips = [
 
 const defaultStyle = {
   backgroundColor: 'white',
-  boxShadow: '3px 3px 5px black'
 };
 
 const activeStyle = {
   backgroundColor: 'yellow',
-  boxShadow: '0 3px yellow',
 };
 
 function App() { 
@@ -123,47 +121,51 @@ function App() {
           ))}
         </div>
         <div id="control-panel">
-        <div id="display"></div>
-        <h3>Volume</h3>
-        <input 
-          min="0"
-          max="1"
-          step="0.01"
-          type="range" 
-          value={volume}
-          onChange={changeVolume}
-        ></input>
-        <div>{Math.round(volume*100) + "%"}</div>
-        <h3>Speed</h3>
-        <input 
-          min="0.1"
-          max="5"
-          step="0.1"
-          type="range" 
-          value={speed}
-          onChange={changeSpeed}
-        ></input>
-        <div>{speed}x</div>
-        <div id="control-buttons">
-          <div 
-            className="btn"
-            onClick={recordToggler} 
-            style={recordStatus ? {backgroundColor: "red"}:{backgroundColor: "white"}}
-          >
-            <i className="fas fa-record-vinyl"></i></div>
-          <div      
-            className="btn"
-            onClick={playRecord}
-            style={playStatus ? {backgroundColor: "green"}:{backgroundColor: "white"}}
-          ><i className="white fas fa-play"></i></div>
-          <div 
-            className="btn"
-            id="clear-btn"
-            style={{backgroundColor: 'white'}}
-            onClick={clearRecord}
-            ><i className="far fa-trash-alt" ></i></div>
-        </div>
-        <div>{record}</div>
+          <div id="display"></div>
+          <div id="volume-bar" className="control-bars">
+            <p>Volume</p>
+            <input 
+              min="0"
+              max="1"
+              step="0.01"
+              type="range" 
+              value={volume}
+              onChange={changeVolume}
+            ></input>
+            <div>{Math.round(volume*100) + "%"}</div>
+          </div>
+          <div id="speed-bar" className="control-bars">
+            <p>Speed</p>
+            <input 
+              min="0.1"
+              max="5"
+              step="0.1"
+              type="range" 
+              value={speed}
+              onChange={changeSpeed}
+            ></input>
+            <div>{speed}x</div>
+            </div>
+          <div id="control-buttons">
+            <button
+              onClick={recordToggler} 
+              style={recordStatus ? {backgroundColor: "red"}:{backgroundColor: "white"}}
+            >
+              <i className="fas fa-record-vinyl"></i></button>
+            <button    
+              onClick={playRecord}
+              style={playStatus ? {backgroundColor: "green"}:{backgroundColor: "white"}}
+            ><i className="white fas fa-play"></i></button>
+            <button
+              id="stop-btn"
+              style={{backgroundColor: 'white'}}
+            ><i className="fas fa-stop"></i></button>
+            <button
+              id="clear-btn"
+              style={{backgroundColor: 'white'}}
+              onClick={clearRecord}
+            ><i className="far fa-trash-alt" ></i></button> 
+          </div>
         </div>
       </div>
       <div className="footer"><a id="footer" target="_blank" href="https://github.com/SemenovDeveloper"><i className="fab fa-github-square"></i>by SemenovDeveloper</a>
@@ -208,14 +210,13 @@ function Pad(props) {
 
 
     return (
-      <div onClick={playSound} className="drum-pad btn" style={padStyle}
-      >
+      <div onClick={playSound} className="drum-pad btn" style={padStyle}>
         <audio      
           className="clip"
           id={props.clip.keyTrigger}
           src={props.clip.url}
         />
-        {props.clip.keyTrigger}
+        <div>{props.clip.keyTrigger}</div>
       </div>
     )
 }
