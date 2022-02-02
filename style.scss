@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+$light: #e7e7e7;
+$dark: #000000;
 
 *, body, html {
   box-sizing: border-box;
@@ -25,9 +27,9 @@ h1 {
 #drum-machine {
   width: 800px;
   height: 540px;
-  background-color: black;
-  border: 2px solid white;
-  color: white;
+  background-color: $dark;
+  border: 2px solid $light;
+  color: $light;
   border-radius: 3%;
   display: flex;
   flex-direction: column;
@@ -43,22 +45,20 @@ h1 {
 }
 
 #pad-panel {
-  width: 370px;
   display: grid;
   grid-template-columns: 110px 110px 110px;
   grid-column-gap: 20px;
   grid-row-gap: 15px;
-}
-
-.drum-pad{
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 90px;
-  div {
-    font-size: 2rem;
+  .drum-pad{
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 90px;
+    div {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -69,10 +69,11 @@ h1 {
   align-items: center;
   .control-bars{
     width: 100%;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid white;
+    border: 1px solid $light;
     border-radius: 5%;
     input {
       margin: 5px 5px;
@@ -84,9 +85,9 @@ h1 {
 #display {
   width: 100%;
   height: 35px;
-  background-color: black;
-  color: white;
-  border: 1px solid white;
+  background-color: $dark;
+  color: $light;
+  border: 1px solid $light;
   border-radius: 5%;
   font-size: 1.25rem;
 }
@@ -104,19 +105,57 @@ h1 {
 
 .footer {
   height: 35px;
-  color: white;
+  color: $light;
   text-align: center;
   i {
-    color:white;
+    color:$light;
     margin-right: 5px;
   }
-  a:active, /* активная/посещенная ссылка */
-  a:hover,  /* при наведении */
+  a:active,
+  a:hover,
   a {
     text-decoration: none;
-    color: white;
+    color: $light;
     padding-right: 35px;
     text-decoration: none;
     font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #drum-machine {
+    height: 95vh;
+    width: 95vw;
+    #functional-components{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      #control-panel{
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: 40vw 40vw;
+        grid-template-rows: 60px 60px;
+        grid-column-gap: 5vh;
+        grid-row-gap: 5vw;
+        grid-template-areas:
+        "display buttons"
+        "volume speed";
+        #display {
+          height: 50px;
+          grid-area: display;
+        }
+        #volume-bar {
+          grid-area: volume;
+        }
+        #speed-bar {
+          grid-area: speed;
+        }
+        #control-buttons {
+          grid-area: buttons;
+          justify-content: space-evenly;
+        }
+      }
+    }
   }
 }

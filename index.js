@@ -78,7 +78,8 @@ function App() {
     setSpeed(e.target.value);
   }
 
-  const playRecord = () =>{
+  const playRecord = () => { 
+    setPlayStatus(true);
     const sounds = record.split("");
     for(let i=0; i < sounds.length; i++){
       setTimeout( () => {
@@ -86,7 +87,6 @@ function App() {
         audioTag.volume = volume;
         audioTag.currentTime = 0;
         audioTag.play();
-        setPlayStatus(true);
       }, i * (1/speed) * 300);
     }    
     setTimeout( () => {
@@ -94,11 +94,15 @@ function App() {
     }, sounds.length * (1/speed) * 300)
   }
 
+  const stopPlaying = () => {
+    setPlayStatus(false);
+  }
+
   const clearRecord = () => {
     const clearBtn = document.getElementById("clear-btn");
     clearBtn.style.backgroundColor = "yellow";
     setRecord("");
-    setTimeout( () => {clearBtn.style.backgroundColor = "white"},300)
+    setTimeout( () => {clearBtn.style.backgroundColor = "white"}, 300);
   }
 
   const recordToggler = () => {
@@ -157,10 +161,6 @@ function App() {
               style={playStatus ? {backgroundColor: "green"}:{backgroundColor: "white"}}
             ><i className="white fas fa-play"></i></button>
             <button
-              id="stop-btn"
-              style={{backgroundColor: 'white'}}
-            ><i className="fas fa-stop"></i></button>
-            <button
               id="clear-btn"
               style={{backgroundColor: 'white'}}
               onClick={clearRecord}
@@ -202,7 +202,7 @@ function Pad(props) {
       audioTag.play();
       displayClipId();
       setPadStyle(activeStyle);
-      setTimeout( () => {setPadStyle(defaultStyle)},200)
+      setTimeout( () => {setPadStyle(defaultStyle)}, 200);
       if (props.recordStatus) {
         props.setRecord(record => record + props.clip.keyTrigger);
       }

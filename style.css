@@ -20,9 +20,9 @@ h1 {
 #drum-machine {
   width: 800px;
   height: 540px;
-  background-color: black;
-  border: 2px solid white;
-  color: white;
+  background-color: #000000;
+  border: 2px solid #e7e7e7;
+  color: #e7e7e7;
   border-radius: 3%;
   display: flex;
   flex-direction: column;
@@ -36,21 +36,19 @@ h1 {
   justify-content: space-evenly; }
 
 #pad-panel {
-  width: 370px;
   display: grid;
   grid-template-columns: 110px 110px 110px;
   grid-column-gap: 20px;
   grid-row-gap: 15px; }
-
-.drum-pad {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 90px; }
-  .drum-pad div {
-    font-size: 2rem; }
+  #pad-panel .drum-pad {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 90px; }
+    #pad-panel .drum-pad div {
+      font-size: 2rem; }
 
 #control-panel {
   display: flex;
@@ -59,10 +57,11 @@ h1 {
   align-items: center; }
   #control-panel .control-bars {
     width: 100%;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid white;
+    border: 1px solid #e7e7e7;
     border-radius: 5%; }
     #control-panel .control-bars input {
       margin: 5px 5px; }
@@ -70,9 +69,9 @@ h1 {
 #display {
   width: 100%;
   height: 35px;
-  background-color: black;
-  color: white;
-  border: 1px solid white;
+  background-color: #000000;
+  color: #e7e7e7;
+  border: 1px solid #e7e7e7;
   border-radius: 5%;
   font-size: 1.25rem; }
 
@@ -87,16 +86,44 @@ h1 {
 
 .footer {
   height: 35px;
-  color: white;
+  color: #e7e7e7;
   text-align: center; }
   .footer i {
-    color: white;
+    color: #e7e7e7;
     margin-right: 5px; }
   .footer a:active,
   .footer a:hover,
   .footer a {
     text-decoration: none;
-    color: white;
+    color: #e7e7e7;
     padding-right: 35px;
     text-decoration: none;
     font-size: 1rem; }
+
+@media screen and (max-width: 650px) {
+  #drum-machine {
+    height: 95vh;
+    width: 95vw; }
+    #drum-machine #functional-components {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      #drum-machine #functional-components #control-panel {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: 40vw 40vw;
+        grid-template-rows: 60px 60px;
+        grid-column-gap: 5vh;
+        grid-row-gap: 5vw;
+        grid-template-areas: "display buttons" "volume speed"; }
+        #drum-machine #functional-components #control-panel #display {
+          height: 50px;
+          grid-area: display; }
+        #drum-machine #functional-components #control-panel #volume-bar {
+          grid-area: volume; }
+        #drum-machine #functional-components #control-panel #speed-bar {
+          grid-area: speed; }
+        #drum-machine #functional-components #control-panel #control-buttons {
+          grid-area: buttons;
+          justify-content: space-evenly; } }
