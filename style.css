@@ -14,9 +14,6 @@ body {
   align-items: center;
   height: 100vh; }
 
-h1 {
-  padding-top: 20px; }
-
 #drum-machine {
   width: 800px;
   height: 540px;
@@ -28,6 +25,8 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center; }
+  #drum-machine h1 {
+    padding-top: 20px; }
 
 #functional-components {
   width: 90%;
@@ -109,8 +108,11 @@ h1 {
       flex-direction: column;
       justify-content: center;
       align-items: center; }
+      #drum-machine #functional-components #pad-panel {
+        grid-column-gap: 10px;
+        grid-row-gap: 10px; }
       #drum-machine #functional-components #control-panel {
-        margin-top: 15px;
+        margin-top: 30px;
         display: grid;
         grid-template-columns: 40vw 40vw;
         grid-template-rows: 60px 60px;
@@ -118,7 +120,7 @@ h1 {
         grid-row-gap: 5vw;
         grid-template-areas: "display buttons" "volume speed"; }
         #drum-machine #functional-components #control-panel #display {
-          height: 50px;
+          height: 40px;
           grid-area: display; }
         #drum-machine #functional-components #control-panel #volume-bar {
           grid-area: volume; }

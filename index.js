@@ -127,7 +127,7 @@ function App() {
         <div id="control-panel">
           <div id="display"></div>
           <div id="volume-bar" className="control-bars">
-            <p>Volume</p>
+            <p>Volume: {Math.round(volume*100) + "%"}</p>
             <input 
               min="0"
               max="1"
@@ -136,10 +136,9 @@ function App() {
               value={volume}
               onChange={changeVolume}
             ></input>
-            <div>{Math.round(volume*100) + "%"}</div>
           </div>
           <div id="speed-bar" className="control-bars">
-            <p>Speed</p>
+            <p>Speed: {speed}x</p>
             <input 
               min="0.1"
               max="5"
@@ -148,7 +147,6 @@ function App() {
               value={speed}
               onChange={changeSpeed}
             ></input>
-            <div>{speed}x</div>
             </div>
           <div id="control-buttons">
             <button
